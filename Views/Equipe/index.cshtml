@@ -1,0 +1,26 @@
+@model Equipe 
+@{
+    ViewData["Tilte"] = "Equipes";
+}
+
+<form action="@Url.Action("Cadastrar")" method="post">
+
+    <label for = "IdEquipe">IdEquipe</label>
+    <input type="text" name="IdEquipe" id="IdEquipe">
+
+    <label for= "Nome">Nome</label>
+    <input type="text" name ="Nome" id="Nome">
+
+    <label for="Imagem" name= "Imagem" Id="Imagem">Imagem</label>  
+    
+    <button type= "submit">Cadastrar</button>
+
+</form>
+
+<table>
+    <thead>
+      <th>Id</th>
+      <th>Nome</th>
+      <th>Imagem</th>
+    </thead>
+</table>
