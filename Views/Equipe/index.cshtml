@@ -1,26 +1,52 @@
 @model Equipe 
 @{
-    ViewData["Tilte"] = "Equipes";
+    ViewData["Title"] = "Equipes";
 }
+ <div class="titulo_pagina">
+    <h1>cadastro de @ViewData["Title"]</h1>
+</div>
+           
+<form class="Cadastro" action="@Url.Action("Cadastrar")" method="post" enctype="multipart/form-data">
+    <div class="campo">
+       <label for = "IdEquipe">IdEquipe</label>
+       <input type="text" name="IdEquipe" id="IdEquipe">
+    </div>
+    <div class="campo">
+      <label for= "Nome">Nome</label>
+     <input type="text" name="Nome" id="Nome">
+    </div>
+    <div class="campo">
+         <label for="Imagem">Imagem</label>                                                                                                                                                                                        
+         <input type="file" name ="Imagem" id="Imagem">
+    </div>
 
-<form action="@Url.Action("Cadastrar")" method="post">
-
-    <label for = "IdEquipe">IdEquipe</label>
-    <input type="text" name="IdEquipe" id="IdEquipe">
-
-    <label for= "Nome">Nome</label>
-    <input type="text" name ="Nome" id="Nome">
-
-    <label for="Imagem" name= "Imagem" Id="Imagem">Imagem</label>  
-    
-    <button type= "submit">Cadastrar</button>
+    <button class="gradient bnt"type= "submit">Cadastrar</button>
 
 </form>
 
 <table>
-    <thead>
+    <thead class="table table-responsive table-striped">
       <th>Id</th>
       <th>Nome</th>
       <th>Imagem</th>
+      <th>Ações</th>
     </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Equipes)
+        {
+            <tr>
+                <td>@item.IdEquipe</td>
+                <td>@item.Nome</td>
+                <td>
+                    <img src = "img/Equipes/@item.Imagem" alt = "Imagem da Equipe @item.Nome" />
+                </td> 
+                <td> 
+                    <a asp-area="" asp-controller="Equipe" asp-action="Excluir" asp-route-id="@item.IdEquipe">Excluir
+                        <i class="fa fa trash"></i>
+                    </a>
+
+                </td>                       
+            </tr>
+        }
+    </tbody> 
 </table>
